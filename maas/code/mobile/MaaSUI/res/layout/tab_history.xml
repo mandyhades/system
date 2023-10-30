@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center_horizontal" >
+
+    <ImageButton 
+        android:id="@+id/tabhis_btn_refresh"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:background="@drawable/custom_ibtn1"
+        android:layout_gravity="right"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="10dp"/>
+    
+    <HorizontalScrollView
+        android:id="@+id/horizontalScrollView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal" >
+        
+		    <ScrollView
+		        android:id="@+id/scrollView1"
+		        android:layout_width="match_parent"
+		        android:layout_height="match_parent" >
+		
+		        <LinearLayout
+		            android:layout_width="match_parent"
+		            android:layout_height="wrap_content"
+		            android:gravity="center_horizontal"
+		            android:orientation="vertical"
+		            android:paddingTop="10dp" >
+		
+		            <TableLayout
+		                android:id="@+id/tabhis_tableLayout"
+		                android:layout_width="match_parent"
+		                android:layout_height="match_parent" >
+		
+		                <TableRow
+		                    android:layout_width="match_parent"
+		                    android:layout_height="50dp"
+		                    android:gravity="center" >
+		
+		                    <TextView
+		                        android:layout_width="100dp"
+		                        android:layout_height="50dp"
+		                        android:background="@drawable/cellborder_header"
+		                        android:gravity="center"
+		                        android:text="ID" />
+		
+		                    <TextView
+		                        android:layout_width="150dp"
+		                        android:layout_height="50dp"
+		                        android:background="@drawable/cellborder_header"
+		                        android:gravity="center"
+		                        android:text="NAME" />
+		
+		                    <TextView
+		                        android:layout_width="100dp"
+		                        android:layout_height="50dp"
+		                        android:background="@drawable/cellborder_header"
+		                        android:gravity="center"
+		                        android:text="START TIME" />
+		
+		                    <TextView
+		                        android:layout_width="100dp"
+		                        android:layout_height="50dp"
+		                        android:background="@drawable/cellborder_header"
+		                        android:gravity="center"
+		                        android:text="FINISH TIME" />
+		
+		                    <TextView
+		                        android:layout_width="100dp"
+		                        android:layout_height="50dp"
+		                        android:background="@drawable/cellborder_header"
+		                        android:gravity="center"
+		                        android:text="STATE" />
+		                </TableRow>
+		            </TableLayout>
+		        </LinearLayout>
+		    </ScrollView>
+    	</LinearLayout>
+    </HorizontalScrollView>
+
+</LinearLayout>

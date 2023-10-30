@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/j2ee" xmlns:web="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd" version="2.4">
+  <display-name>MaaS Servlet</display-name>
+  
+  <description>
+        This is a simple web application with a source code organization
+        based on the recommendations of the Application Developer's Guide.
+    </description>
+    
+  <servlet>
+    <servlet-name>Recommender</servlet-name>
+    <servlet-class>dhbk.maas.servlet.mahout.recommendation.Recommender</servlet-class>
+  </servlet>
+  
+  <servlet>
+    <servlet-name>Canopy</servlet-name>
+    <servlet-class>dhbk.maas.servlet.mahout.clustering.Canopy</servlet-class>
+  </servlet>
+  
+  <servlet>
+    <servlet-name>FuzzyKMeans</servlet-name>
+    <servlet-class>dhbk.maas.mahout.servlet.mahout.clustering.Fuzzy_k_Means</servlet-class>
+  </servlet>
+  
+  <servlet>
+    <servlet-name>KMeans</servlet-name>
+    <servlet-class>dhbk.maas.servlet.mahout.clustering.K_Means</servlet-class>
+  </servlet>
+  
+  <servlet>
+    <servlet-name>HiddenMarkovModels</servlet-name>
+    <servlet-class>dhbk.maas.servlet.mahout.classification.HiddenMarkovModels</servlet-class>
+  </servlet>
+  
+  <servlet>
+    <servlet-name>LogisticRegression</servlet-name>
+    <servlet-class>dhbk.maa.servlet.mahout.classification.LogisticRegression</servlet-class>
+  </servlet>
+  
+  <servlet>
+    <servlet-name>NaiveBayes</servlet-name>
+    <servlet-class>dhbk.maas.servlet.mahout.classification.NaiveBayes</servlet-class>
+  </servlet>
+  
+  <servlet>
+    <servlet-name>RandomForest</servlet-name>
+    <servlet-class>dhbk.maas.servlet.mahout.classification.RandomForest</servlet-class>
+  </servlet>
+  
+  <servlet>
+      <servlet-name>ListADirectory</servlet-name>
+      <servlet-class>dhbk.maas.servlet.directorymanage.ListADirectory</servlet-class>
+  </servlet>
+  
+  <servlet>
+      <servlet-name>FileContent</servlet-name>
+      <servlet-class>dhbk.maas.servlet.directorymanage.FileContent</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+    <servlet-name>Recommender</servlet-name>
+    <url-pattern>/recommender</url-pattern>
+  </servlet-mapping>
+  
+  <servlet-mapping>
+    <servlet-name>Canopy</servlet-name>
+    <url-pattern>/canopy</url-pattern>
+  </servlet-mapping>
+  
+  <servlet-mapping>
+    <servlet-name>FuzzyKMeans</servlet-name>
+    <url-pattern>/fuzzykmeans</url-pattern>
+  </servlet-mapping>
+  
+  <servlet-mapping>
+    <servlet-name>KMeans</servlet-name>
+    <url-pattern>/kmeans</url-pattern>
+  </servlet-mapping>
+  
+  <servlet-mapping>
+    <servlet-name>HiddenMarkovModels</servlet-name>
+    <url-pattern>/hiddenmarkovmodels</url-pattern>
+  </servlet-mapping>
+  
+  <servlet-mapping>
+    <servlet-name>LogisticRegression</servlet-name>
+    <url-pattern>/logisticregression</url-pattern>
+  </servlet-mapping>
+  
+  <servlet-mapping>
+    <servlet-name>NaiveBayes</servlet-name>
+    <url-pattern>/naivebayes</url-pattern>
+  </servlet-mapping>
+  
+  <servlet-mapping>
+    <servlet-name>RandomForest</servlet-name>
+    <url-pattern>/randomforest</url-pattern>
+  </servlet-mapping>
+  
+  <servlet-mapping>
+    <servlet-name>FileContent</servlet-name>
+    <url-pattern>/filecontent</url-pattern>
+  </servlet-mapping>
+  
+  <servlet-mapping>
+    <servlet-name>ListADirectory</servlet-name>
+    <url-pattern>/listadirectory</url-pattern>
+  </servlet-mapping>
+  
+</web-app>

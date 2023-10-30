@@ -1,0 +1,67 @@
+#Controller1
+yum install git 
+git clone https://github.com/ducnc/openstack-tools.git
+mv openstack-tools/scripts/OpenStack-Pike-No-HA/ .
+cd OpenStack-Pike-No-HA/
+
+#Network
+eth1: management network, internet access
+eth0: provider flat network
+172.16.68: management subnet
+10.10.10: provider network
+
+sed -i "s/ens33/eth1/g" *.*
+sed -i "s/ens37/eth0/g" *.*
+sed -i "s/192.168.42/172.16.68/g" *.*
+sed -i "s/192.168.20/172.16.68/g" *.*
+sed -i "s/192.168.92/10.10.10/g" *.*
+
+vi setup_ip.sh
+INTERFACE1=eth1
+INTERFACE2=eth0
+IP_GATEWAY=172.16.68.1
+
+
+vi config.cfg
+#edit IP theo Plan
+
+#Tren controller1
+bash setup_ip.sh controller1 172.16.68.130 10.10.10.130
+
+#Tren controller1
+cd OpenStack-Pike-No-HA/
+sudo yum -y install epel-release
+sudo yum -y install byobu
+byobu
+bash noha_ctl_prepare.sh
+cd OpenStack-Pike-No-HA/
+bash noha_ctl_install_db_rabbitmq.sh
+bash noha_ctl_keystone.sh
+bash noha_ctl_glance.sh 
+bash noha_ctl_nova.sh 
+bash noha_ctl_neutron.sh 
+openstack network agent list 
+sed -i "s/sdb/vdb/g" noha_ctl_cinder.sh 
+bash noha_ctl_cinder.sh aio
+cinder list 
+bash noha_ctl_horizon.sh 
+
+
+#Fix horizon 503 ERROR
+#End of script output before headers: django.wsgi, referer: http://172.16.68.130/
+vi /etc/httpd/conf.d/openstack-dashboard.conf
+#add this line
+WSGIApplicationGroup %{GLOBAL}
+
+
+
+
+#Install Other Compute node
+#Thuc hien tren controller1
+source config.cfg
+bash noha_node_prepare.sh $COM1_IP_NIC1
+scp -r /root/OpenStack-Pike-No-HA/ root@$COM1_IP_NIC1:/root/
+#Tren compute node
+bash setup_ip.sh compute1 172.16.68.131 10.10.10.131
+bash noha_com_install.sh
+reboot

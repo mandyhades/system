@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+    
+    <LinearLayout 
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" 
+        android:weightSum="100">
+        
+        <LinearLayout 
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="35" >
+            
+            <TextView
+	            android:id="@+id/tabsub_tv_algorithm"
+	            android:layout_width="match_parent"
+	            android:layout_height="wrap_content"
+	            android:textStyle="italic"
+	            android:text="Algorithm"/>
+        </LinearLayout>
+        
+		<LinearLayout 
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="35" >
+            
+	        <TextView
+	            android:id="@+id/tabsub_tv_data"
+	            android:layout_width="match_parent"
+	            android:layout_height="wrap_content"
+	            android:textStyle="italic"
+	            android:text="Data" />
+        </LinearLayout>
+        
+        <LinearLayout 
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="30" >
+            
+            <Button 
+	            android:id="@+id/tabsub_btn_submit"
+	            style="?android:attr/buttonStyleSmall"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content" 
+	            android:text="Submit"/>
+            
+        </LinearLayout>
+        
+        
+    </LinearLayout>
+    
+    <LinearLayout 
+        android:layout_width="match_parent"
+	    android:layout_height="match_parent"
+	    android:orientation="horizontal" 
+	    android:paddingTop="10dp"
+	    android:weightSum="100">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="50"
+            android:orientation="vertical"
+            android:background="#3300AA00" >
+            
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:paddingTop="5dp"
+                android:paddingBottom="10dp"
+                android:textStyle="bold"
+                android:textSize="18dp"
+                android:text="Algorithm" />
+
+            <ListView
+                android:id="@+id/tabsub_lv_algorithm"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" >
+            </ListView>
+            
+        </LinearLayout>
+     	
+     	<LinearLayout 
+     	    android:layout_width="0dp"
+	    	android:layout_height="match_parent"
+	    	android:background="#330000AA"
+	    	android:orientation="vertical"
+	    	android:layout_weight="50">
+     	    
+     	    <RelativeLayout
+     	        android:layout_width="match_parent"
+     	        android:layout_height="wrap_content" >
+
+     	        <ImageButton
+     	            android:id="@+id/tabsub_btn_refresh"
+     	            android:layout_width="20dp"
+     	            android:layout_height="20dp"
+     	            android:layout_marginRight="10dp"
+     	            android:layout_alignParentRight="true"
+     	            android:background="@drawable/custom_ibtn1" />
+
+     	        <TextView
+     	            android:layout_width="wrap_content"
+     	            android:layout_height="wrap_content"
+     	            android:layout_centerHorizontal="true"
+     	            android:layout_centerVertical="true"
+     	            android:paddingTop="5dp"
+                	android:paddingBottom="10dp"
+     	            android:textStyle="bold"
+     	            android:textSize="18dp"
+     	            android:text="Data" />
+     	        
+     	    </RelativeLayout>
+     	    
+     	    <ListView 
+                android:id="@+id/tabsub_lv_data"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" >
+            </ListView>
+     	    
+     	</LinearLayout>
+        
+    </LinearLayout>
+    
+
+</LinearLayout>

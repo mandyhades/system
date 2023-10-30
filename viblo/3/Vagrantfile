@@ -1,0 +1,82 @@
+Vagrant.configure("2") do |config|
+
+    config.vm.provider "virtualbox" do |vb|
+    vb.customize ["modifyvm", :id, "--memory", 2048]
+    vb.customize ["modifyvm", :id, "--cpus", 2]
+    vb.linked_clone = true
+    #vb.gui=true
+    end
+    #controlnode
+    config.vm.define :controlnode do |controlnode|
+    controlnode.vm.box ="centos/7"
+    controlnode.vm.network "private_network", ip: "192.168.56.8"
+    controlnode.vm.provision :shell, :path => "hosts.sh"
+    controlnode.vm.provision :shell, :path => "all_hosts_script.sh"
+    controlnode.vm.provision :"file", source: "./yaml/", destination: "~/"
+    controlnode.vm.provision :shell, inline: "
+    sudo sed -e \"s/PasswordAuthentication no/PasswordAuthentication yes/\"
+    sudo mv /etc/ssh/sshd_config_tmp /etc/ssh/sshd_config
+    sudo systemctl restart sshd.service
+    sudo hostnamectl set-hostname controlnode.lab.example.com
+    sudo yum install epel-release -y
+    sudo yum install dnf -y 
+    sudo dnf install nano -y
+    sudo dnf install ansible -y
+    "
+    end
+    
+    #stratis on sdb,sdc and vdo on sdd
+    config.vm.define :serverb do |serverb|
+    serverb.vm.box ="centos/7"
+    serverb.vm.network "private_network", ip: "192.168.56.10"
+    serverb.vm.provision :shell, :path => "host.sh"
+    serverb.vm.provision :shell, :path => "all_hosts_script.sh"
+    serverb.vm.provision :shell, inline: "
+    sudo sed -e \"s/PasswordAuthentication no/PasswordAuthentication yes/\"
+    sudo mv /etc/ssh/sshd_config_tmp /etc/ssh/sshd_config
+    sudo systemctl restart sshd.service
+    sudo hostnamectl set-hostname serverb.lab.example.com
+    "
+    end
+    
+    config.vm.define :servera do |servera|
+    servera.vm.box ="centos/7"
+    servera.vm.network "private_network", ip: "192.168.56.9"
+    servera.vm.provision :shell, :path => "host.sh"
+    servera.vm.provision :shell, :path => "all_hosts_script.sh"
+    servera.vm.provision :shell, inline: "
+    sudo sed -e \"s/PasswordAuthentication no/PasswordAuthentication yes/\"
+    sudo mv /etc/ssh/sshd_config_tmp /etc/ssh/sshd_config
+    sudo systemctl restart sshd.service
+    sudo hostnamectl set-hostname servera.lab.example.com
+    "
+    end
+    
+    config.vm.define :serverc do |serverc|
+    serverc.vm.box ="centos/7"
+    serverc.vm.network "private_network", ip: "192.168.56.11"
+    serverc.vm.provision :shell, :path => "host.sh"
+    serverc.vm.provision :shell, :path => "all_hosts_script.sh"
+    serverc.vm.provision :shell, inline: "
+    sudo sed -e \"s/PasswordAuthentication no/PasswordAuthentication yes/\"
+    sudo mv /etc/ssh/sshd_config_tmp /etc/ssh/sshd_config
+    sudo systemctl restart sshd.service
+    sudo hostnamectl set-hostname serverc.lab.example.com
+    "
+    end
+    
+    config.vm.define :serverd do |serverd|
+    serverd.vm.box ="centos/7"
+    serverd.vm.network "private_network", ip: "192.168.56.12"
+    serverd.vm.provision :shell, :path => "host.sh"
+    serverd.vm.provision :shell, :path => "all_hosts_script.sh"
+    serverd.vm.provision :shell, inline: "
+    sudo sed -e \"s/PasswordAuthentication no/PasswordAuthentication yes/\"
+    sudo mv /etc/ssh/sshd_config_tmp /etc/ssh/sshd_config
+    sudo systemctl restart sshd.service
+    sudo hostnamectl set-hostname serverd.lab.example.com
+    "
+    end
+    
+end  
+    

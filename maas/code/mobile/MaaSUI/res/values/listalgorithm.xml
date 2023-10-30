@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="algorithm_name">
+        <item>Recommender</item>
+        <item>Naive Bayes</item>
+        <item>Hidden Markov Models</item>
+        <item>Logistic Regression</item>
+        <item>Random Forest</item>
+        <item>k-Means</item>
+        <item>Canopy</item>
+        <item>Fuzzy k-Means</item>
+    </string-array>
+    
+    <string-array name="algorithm_group">
+        <item>Recommendations</item>
+        <item>Classification</item>
+        <item>Classification</item>
+        <item>Classification</item>
+        <item>Classification</item>
+        <item>Clustering</item>
+        <item>Clustering</item>
+        <item>Clustering</item>
+    </string-array>
+</resources>

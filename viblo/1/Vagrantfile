@@ -1,0 +1,247 @@
+# Configure the Vagrant environment
+Vagrant.configure("2") do |config|
+# Disable the default SSH key insertion
+config.ssh.insert_key = false
+# Set the provider as VirtualBox and allocate 256 MB of memory
+config.vm.provider :virtualbox do |vb|
+vb.customize ["modifyvm", :id, "--memory", "256"]
+end
+
+# Define the first web server
+config.vm.define :web1 do |web1|
+# Set the base box to centos 7
+web1.vm.box = "centos/7"
+# Configure the private network IP address (host-only network)
+web1.vm.network "private_network", ip: "192.168.56.2"
+# Set up the hostnames and configure the hostname for this
+web1.vm.provision "shell", inline: "
+
+echo '192.168.56.2 web1' >> /etc/hosts
+
+echo '192.168.56.3 web2' >> /etc/hosts
+
+echo '192.168.56.4 db1' >> /etc/hosts
+
+echo '192.168.56.5 db2' >> /etc/hosts
+
+echo '192.168.56.6 app1' >> /etc/hosts
+
+echo '192.168.56.7 app2' >> /etc/hosts
+
+echo '192.168.56.11 master' >> /etc/hosts
+
+sudo hostnamectl set-hostname web1"
+
+end
+
+
+
+# Define the second web server
+
+config.vm.define :web2 do |web2|
+# Set the base box to centos 7
+web2.vm.box = "centos/7"
+# Configure the private network IP address (host-only network)
+web2.vm.network "private_network", ip: "192.168.56.3"
+# Set up the hostnames and configure the hostname for this machine
+
+web2.vm.provision "shell", inline: "
+
+echo '192.168.56.2 web1' >> /etc/hosts
+
+echo '192.168.56.3 web2' >> /etc/hosts
+
+echo '192.168.56.4 db1' >> /etc/hosts
+
+echo '192.168.56.5 db2' >> /etc/hosts
+
+echo '192.168.56.6 app1' >> /etc/hosts
+
+echo '192.168.56.7 app2' >> /etc/hosts
+
+echo '192.168.56.11 master' >> /etc/hosts
+
+sudo hostnamectl set-hostname web2"
+
+end
+
+
+# Define the database server
+config.vm.define :db1 do |db1|
+# Set the base box to CentOS 7
+db1.vm.box = "centos/7"
+# Configure the private network IP address (host-only network)
+db1.vm.network "private_network", ip: "192.168.56.4"
+# Set up the hostnames and configure the hostname for this machine
+
+db1.vm.provision "shell", inline: "
+
+echo '192.168.56.2 web1' >> /etc/hosts
+
+echo '192.168.56.3 web2' >> /etc/hosts
+
+echo '192.168.56.4 db1' >> /etc/hosts
+
+echo '192.168.56.5 db2' >> /etc/hosts
+
+echo '192.168.56.6 app1' >> /etc/hosts
+
+echo '192.168.56.7 app2' >> /etc/hosts
+
+echo '192.168.56.11 master' >> /etc/hosts
+
+# Enable password authentication for SSH
+
+sudo sed -e \"s/PasswordAuthentication no/PasswordAuthentication yes/\" /etc/ssh/sshd_config > /etc/ssh/sshd_config_tmp
+
+sudo mv /etc/ssh/sshd_config_tmp /etc/ssh/sshd_config
+
+sudo systemctl restart sshd.service
+
+sudo hostnamectl set-hostname db1"
+
+end
+
+# Define the database 2 server
+config.vm.define :db2 do |db2|
+# Set the base box to CentOS 7
+db2.vm.box = "centos/7"
+# Configure the private network IP address (host-only network)
+db2.vm.network "private_network", ip: "192.168.56.5"
+# Set up the hostnames and configure the hostname for this machine
+db2.vm.provision "shell", inline: "
+
+echo '192.168.56.2 web1' >> /etc/hosts
+
+echo '192.168.56.3 web2' >> /etc/hosts
+
+echo '192.168.56.4 db1' >> /etc/hosts
+
+echo '192.168.56.5 db2' >> /etc/hosts
+
+echo '192.168.56.6 app1' >> /etc/hosts
+
+echo '192.168.56.7 app2' >> /etc/hosts
+
+echo '192.168.56.11 master' >> /etc/hosts
+
+# Enable password authentication for SSH
+
+sudo sed -e \"s/PasswordAuthentication no/PasswordAuthentication yes/\" /etc/ssh/sshd_config > /etc/ssh/sshd_config_tmp
+
+sudo mv /etc/ssh/sshd_config_tmp /etc/ssh/sshd_config
+
+sudo systemctl restart sshd.service
+
+sudo hostnamectl set-hostname db2"
+
+end
+
+# Define the app1 server
+config.vm.define :app1 do |app1|
+# Set the base box to CentOS 7
+app1.vm.box = "centos/7"
+# Configure the private network IP address (host-only network)
+app1.vm.network "private_network", ip: "192.168.56.6"
+# Set up the hostnames and configure the hostname for this machine
+app1.vm.provision "shell", inline: "
+
+echo '192.168.56.2 web1' >> /etc/hosts
+
+echo '192.168.56.3 web2' >> /etc/hosts
+
+echo '192.168.56.4 db1' >> /etc/hosts
+
+echo '192.168.56.5 db2' >> /etc/hosts
+
+echo '192.168.56.6 app1' >> /etc/hosts
+
+echo '192.168.56.7 app2' >> /etc/hosts
+
+echo '192.168.56.11 master' >> /etc/hosts
+
+# Enable password authentication for SSH
+
+sudo sed -e \"s/PasswordAuthentication no/PasswordAuthentication yes/\" /etc/ssh/sshd_config > /etc/ssh/sshd_config_tmp
+
+sudo mv /etc/ssh/sshd_config_tmp /etc/ssh/sshd_config
+
+sudo systemctl restart sshd.service
+
+sudo hostnamectl set-hostname app1"
+
+end
+
+# Define the app2 server
+config.vm.define :app2 do |app2|
+# Set the base box to CentOS 7
+app2.vm.box = "centos/7"
+# Configure the private network IP address (host-only network)
+app2.vm.network "private_network", ip: "192.168.56.7"
+# Set up the hostnames and configure the hostname for this machine
+
+app2.vm.provision "shell", inline: "
+
+echo '192.168.56.2 web1' >> /etc/hosts
+
+echo '192.168.56.3 web2' >> /etc/hosts
+
+echo '192.168.56.4 db1' >> /etc/hosts
+
+echo '192.168.56.5 db2' >> /etc/hosts
+
+echo '192.168.56.6 app1' >> /etc/hosts
+
+echo '192.168.56.7 app2' >> /etc/hosts
+
+echo '192.168.56.11 master' >> /etc/hosts
+
+# Enable password authentication for SSH
+
+sudo sed -e \"s/PasswordAuthentication no/PasswordAuthentication yes/\" /etc/ssh/sshd_config > /etc/ssh/sshd_config_tmp
+
+sudo mv /etc/ssh/sshd_config_tmp /etc/ssh/sshd_config
+
+sudo systemctl restart sshd.service
+
+sudo hostnamectl set-hostname app2"
+
+end
+
+# Define the master server
+config.vm.define :master do |master|
+# Set the base box to CentOS 7
+master.vm.box = "centos/7"
+# Configure the private network IP address (host-only network)
+master.vm.network "private_network", ip: "192.168.56.11"
+# Set up the hostnames and configure the hostname for this machine
+
+master.vm.provision "shell", inline: "
+
+echo '192.168.56.2 web1' >> /etc/hosts
+
+echo '192.168.56.3 web2' >> /etc/hosts
+
+echo '192.168.56.4 db1' >> /etc/hosts
+
+echo '192.168.56.5 db2' >> /etc/hosts
+
+echo '192.168.56.6 app1' >> /etc/hosts
+
+echo '192.168.56.7 app2' >> /etc/hosts
+
+echo '192.168.56.11 master' >> /etc/hosts
+
+# Enable password authentication for SSH
+
+sudo sed -e \"s/PasswordAuthentication no/PasswordAuthentication yes/\" /etc/ssh/sshd_config > /etc/ssh/sshd_config_tmp
+
+sudo mv /etc/ssh/sshd_config_tmp /etc/ssh/sshd_config
+
+sudo systemctl restart sshd.service
+
+sudo hostnamectl set-hostname master"
+
+end
+
+end

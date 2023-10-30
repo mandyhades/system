@@ -1,0 +1,41 @@
+# host 192.168.10.1
+config.vm.box = "ubuntu/jammy64"
+config.vm.box_check_update = false
+
+ducla-gitlab
+192.168.10.18
+1 cpu - 4gb
+
+#rancher , harbor-registry , nfs-server
+ducla-rancher
+192.168.10.19
+1 cpu - 4gb
+
+ducla-cicd
+192.168.10.20
+1 cpu - 4gb
+
+# Vip IP 192.168.10.10
+ducla-masterl
+192.168.10.11
+1 cpu - 4gb
+
+ducla-master2
+192.168.10.12
+1 cpu - 4gb
+
+ducla-master3
+192.168.10.13
+1 cpu - 4gb
+
+ducla-workerl
+192.168.10.14
+1 cpu - 8gb
+
+ducla-worker2
+192.168.10.15
+1 cpu - 8gb
+
+ducla-worker3
+192.168.10.16
+1 cpu - 8gb

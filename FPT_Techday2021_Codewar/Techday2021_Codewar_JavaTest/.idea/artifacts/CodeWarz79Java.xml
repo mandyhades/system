@@ -1,0 +1,26 @@
+<component name="ArtifactManager">
+  <artifact type="javafx" name="CodeWarz79Java">
+    <output-path>$PROJECT_DIR$/out/artifacts/CodeWarz79Java</output-path>
+    <properties id="javafx-properties">
+      <options>
+        <option name="appClass" value="yonko.codefest.Main" />
+        <option name="description" value="" />
+        <option name="htmlPlaceholderId" value="" />
+        <option name="title" value="" />
+        <option name="vendor" value="" />
+        <option name="version" value="" />
+      </options>
+    </properties>
+    <root id="root">
+      <element id="archive" name="CodeWarz79Java.jar">
+        <element id="module-output" name="ForTest" />
+        <element id="library" level="project" name="okio-2.0.0-RC1" />
+        <element id="library" level="project" name="okhttp-3.11.0" />
+        <element id="library" level="project" name="kotlin-stdlib-1.2.61" />
+        <element id="library" level="project" name="io.socket:socket.io-client:1.0.0" />
+        <element id="library" level="project" name="gson-2.8.5" />
+        <element id="file-copy" path="$PROJECT_DIR$/lib/jfoenix-8.0.7.jar" />
+      </element>
+    </root>
+  </artifact>
+</component>
